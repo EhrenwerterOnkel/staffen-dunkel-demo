@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benno Staffen GmbH · Gas · Wasser · Heizung · Schwäbisch Gmünd</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:    oklch(0.11 0.014 220);
+  --bg2:   oklch(0.15 0.013 220);
+  --bg3:   oklch(0.19 0.012 220);
+  --line:  oklch(0.26 0.012 220);
+  --ink:   oklch(0.96 0.005 220);
+  --muted: oklch(0.62 0.016 220);
+  --fire:  oklch(0.72 0.19 38);
+  --fire2: oklch(0.62 0.20 32);
+  --blue:  oklch(0.62 0.14 240);
+  --ease:  cubic-bezier(.22,1,.36,1);
+  --ff:    'Archivo',system-ui,sans-serif;
+  --fser:  'Instrument Serif',Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+
+.demo-bar{background:var(--fire);color:#000;text-align:center;padding:.55rem 1rem;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;position:relative;z-index:300}
+
+nav{position:fixed;inset:0 0 auto 0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 6vw;transition:background .4s,padding .4s}
+nav.scrolled{background:oklch(0.11 0.014 220 / .94);backdrop-filter:blur(16px);padding:.9rem 6vw;border-bottom:1px solid var(--line)}
+.logo{font-family:var(--ff);font-size:1.1rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase;display:flex;align-items:center;gap:.7rem}
+.logo-icon{width:28px;height:28px;position:relative;display:flex;align-items:center;justify-content:center}
+.logo-icon::before{content:'';position:absolute;width:20px;height:20px;border:2px solid var(--fire);border-radius:50%}
+.logo-icon::after{content:'🔥';font-size:14px}
+.nlinks{display:flex;gap:2.5rem;list-style:none}
+.nlinks a{font-size:.8rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.nlinks a:hover{color:var(--fire)}
+.nbtn{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#000;background:var(--fire);padding:.65rem 1.5rem;border-radius:3px;transition:background .2s,transform .2s var(--ease)}
+.nbtn:hover{background:var(--fire2);transform:translateY(-2px)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.burger span{width:24px;height:2px;background:var(--ink);transition:.3s}
+
+/* HERO */
+.hero{min-height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:stretch;padding-top:60px}
+.hero-l{display:flex;flex-direction:column;justify-content:center;padding:5rem 4vw 5rem 6vw}
+.h-tag{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fire);margin-bottom:2rem;display:flex;align-items:center;gap:.8rem}
+.h-tag::before{content:'';width:2rem;height:2px;background:var(--fire)}
+h1{font-family:var(--ff);font-weight:900;font-size:clamp(2.8rem,5vw,5rem);line-height:.94;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:2rem;text-wrap:balance}
+h1 em{font-style:normal;color:var(--fire)}
+.hdesc{font-size:1.05rem;line-height:1.7;color:var(--muted);max-width:44ch;margin-bottom:2.5rem}
+.hactions{display:flex;gap:1.2rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.6rem;font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:1rem 2rem;border-radius:3px;transition:transform .25s var(--ease),box-shadow .25s,background .2s}
+.btn-fill{background:var(--fire);color:#000}
+.btn-fill:hover{background:var(--fire2);transform:translateY(-2px);box-shadow:0 12px 30px oklch(0.72 0.19 38 / .3)}
+.btn-ghost{border:1px solid var(--line);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--fire);color:var(--fire)}
+.stats{display:flex;gap:2.5rem;margin-top:3rem;padding-top:2.5rem;border-top:1px solid var(--line);flex-wrap:wrap}
+.stat-n{font-family:var(--ff);font-weight:900;font-size:2.2rem;color:var(--fire);display:block;letter-spacing:-.02em}
+.stat-l{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.2rem;display:block}
+
+.hero-r{position:relative;overflow:hidden;background:var(--bg2)}
+.hero-r-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;padding:3rem}
+.pipe-visual{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;width:100%;max-width:340px}
+.pipe-card{background:var(--bg3);border:1px solid var(--line);border-radius:8px;padding:1.6rem 1.2rem;text-align:center;transition:.3s var(--ease)}
+.pipe-card:hover{border-color:var(--fire);transform:translateY(-4px)}
+.pipe-icon{font-size:2.2rem;margin-bottom:.8rem}
+.pipe-label{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.pipe-highlight{border-color:var(--fire);background:oklch(0.72 0.19 38 / .06)}
+.pipe-highlight .pipe-label{color:var(--fire)}
+.hero-badge{background:oklch(0.72 0.19 38 / .12);border:1px solid oklch(0.72 0.19 38 / .3);border-radius:99px;padding:.5rem 1.2rem;font-size:.75rem;font-weight:700;color:var(--fire);letter-spacing:.06em}
+
+/* SERVICES */
+.services{padding:7rem 6vw;background:var(--bg)}
+.section-label{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--fire);margin-bottom:1.2rem;display:flex;align-items:center;gap:.7rem}
+.section-label::before{content:'';width:1.5rem;height:2px;background:var(--fire)}
+h2{font-family:var(--ff);font-weight:900;font-size:clamp(2rem,3.5vw,3rem);letter-spacing:-.03em;text-transform:uppercase;line-height:1;margin-bottom:4rem;text-wrap:balance}
+h2 em{font-style:normal;color:var(--fire)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--line)}
+.svc-card{background:var(--bg);padding:2.5rem 2rem;transition:.3s var(--ease)}
+.svc-card:hover{background:var(--bg2)}
+.svc-icon{font-size:2.4rem;margin-bottom:1.2rem}
+.svc-title{font-weight:800;font-size:1.1rem;letter-spacing:-.01em;margin-bottom:.8rem}
+.svc-desc{font-size:.88rem;line-height:1.65;color:var(--muted)}
+.svc-card:hover .svc-title{color:var(--fire)}
+
+/* ABOUT */
+.about{padding:7rem 6vw;background:var(--bg2);display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:center}
+.about-content .section-label{margin-bottom:1.5rem}
+.about-content h2{margin-bottom:1.5rem}
+.about-text{font-size:.97rem;line-height:1.8;color:var(--muted);max-width:52ch}
+.about-text p+p{margin-top:1rem}
+.about-visual{display:flex;flex-direction:column;gap:1.2rem}
+.av-row{display:flex;align-items:flex-start;gap:1.2rem;padding:1.5rem;background:var(--bg3);border-radius:6px;border:1px solid var(--line)}
+.av-icon{font-size:1.8rem;flex-shrink:0;margin-top:.1rem}
+.av-title{font-weight:800;font-size:.95rem;margin-bottom:.3rem}
+.av-desc{font-size:.82rem;color:var(--muted);line-height:1.5}
+
+/* CONTACT */
+.contact{padding:7rem 6vw;background:var(--bg)}
+.contact-inner{max-width:700px;margin:0 auto;text-align:center}
+.contact-inner h2{margin-bottom:1rem}
+.contact-sub{font-size:1rem;color:var(--muted);line-height:1.7;margin-bottom:3rem;max-width:48ch;margin-left:auto;margin-right:auto}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;text-align:left;margin-bottom:3rem}
+.cinfo{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:1.4rem 1.6rem}
+.cinfo-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--fire);margin-bottom:.5rem}
+.cinfo-val{font-size:.98rem;font-weight:600}
+form{display:flex;flex-direction:column;gap:1rem;text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+input,textarea{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:.9rem 1.1rem;font:inherit;font-size:.92rem;color:var(--ink);transition:border-color .2s,box-shadow .2s;resize:vertical}
+input::placeholder,textarea::placeholder{color:var(--muted)}
+input:focus,textarea:focus{outline:none;border-color:var(--fire);box-shadow:0 0 0 3px oklch(0.72 0.19 38 / .12)}
+textarea{min-height:130px}
+.form-btn{background:var(--fire);color:#000;border:none;padding:1.1rem 2.5rem;font:inherit;font-size:.85rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:3px;cursor:pointer;transition:background .2s,transform .2s var(--ease);align-self:flex-start}
+.form-btn:hover{background:var(--fire2);transform:translateY(-2px)}
+.modal-note{font-size:.8rem;color:var(--muted);line-height:1.5;padding:1rem;background:oklch(0.72 0.19 38 / .08);border:1px solid oklch(0.72 0.19 38 / .2);border-radius:4px}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--line);padding:2.5rem 6vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.foot-copy{font-size:.78rem;color:var(--muted)}
+.foot-links{display:flex;gap:2rem}
+.foot-links a{font-size:.75rem;color:var(--muted);transition:color .2s}
+.foot-links a:hover{color:var(--fire)}
+
+/* IMPRESSUM */
+.legal{padding:6rem 6vw;max-width:800px;margin:0 auto}
+.legal h3{font-size:1.3rem;font-weight:800;margin-bottom:1.5rem;margin-top:2.5rem}
+.legal h3:first-child{margin-top:0}
+.legal p,.legal address{font-size:.9rem;line-height:1.8;color:var(--muted);font-style:normal}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero-r{min-height:300px;position:relative}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .about{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .nlinks{display:none}
+  .burger{display:flex}
+}
+@media(max-width:600px){
+  .services-grid{grid-template-columns:1fr}
+  .pipe-visual{grid-template-columns:1fr 1fr}
+  h1{font-size:2.4rem}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="demo-bar">⚡ DEMO-WEBSITE — Noch nicht live · Nur zur Ansicht</div>
+
+<nav id="nav">
+  <div class="logo">
+    <div class="logo-icon"></div>
+    Staffen GmbH
+  </div>
+  <ul class="nlinks">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#ueber-uns">Über uns</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="#kontakt" class="nbtn">Angebot anfragen</a>
+  <div class="burger" onclick="this.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-l">
+    <div class="h-tag">Ihr Fachbetrieb in Schwäbisch Gmünd</div>
+    <h1>Gas.<br>Wasser.<br><em>Wärme.</em></h1>
+    <p class="hdesc">Seit Jahrzehnten Ihr zuverlässiger Partner für Gas- und Wasserinstallationen, Heizungsanlagen und Sanitär — sauber, pünktlich, direkt aus Gmünd.</p>
+    <div class="hactions">
+      <a href="#kontakt" class="btn btn-fill">Termin vereinbaren</a>
+      <a href="#leistungen" class="btn btn-ghost">Leistungen ansehen</a>
+    </div>
+    <div class="stats">
+      <div><span class="stat-n">30+</span><span class="stat-l">Jahre Erfahrung</span></div>
+      <div><span class="stat-n">24h</span><span class="stat-l">Notdienst</span></div>
+      <div><span class="stat-n">100%</span><span class="stat-l">Innungsbetrieb</span></div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="hero-r-inner">
+      <div class="hero-badge">✓ Zertifizierter SHK-Fachbetrieb</div>
+      <div class="pipe-visual">
+        <div class="pipe-card pipe-highlight">
+          <div class="pipe-icon">🔥</div>
+          <div class="pipe-label">Gasinstallation</div>
+        </div>
+        <div class="pipe-card">
+          <div class="pipe-icon">💧</div>
+          <div class="pipe-label">Wasserinstallation</div>
+        </div>
+        <div class="pipe-card">
+          <div class="pipe-icon">♨️</div>
+          <div class="pipe-label">Heizungsanlagen</div>
+        </div>
+        <div class="pipe-card">
+          <div class="pipe-icon">🔧</div>
+          <div class="pipe-label">Wartung & Service</div>
+        </div>
+      </div>
+      <div class="hero-badge">📍 Werrenwiesenstraße 42, Gmünd</div>
+    </div>
+  </div>
+</section>
+
+<!-- LEISTUNGEN -->
+<section class="services" id="leistungen">
+  <div class="section-label">Was wir machen</div>
+  <h2>Unsere <em>Leistungen</em></h2>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon">🔥</div>
+      <div class="svc-title">Gasinstallationen</div>
+      <p class="svc-desc">Fachgerechte Installation, Wartung und Reparatur von Gasanlagen. Vom Gasanschluss bis zur kompletten Hausgasanlage — alles aus einer Hand.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">💧</div>
+      <div class="svc-title">Wasserinstallationen</div>
+      <p class="svc-desc">Trinkwasser, Abwasser, Regenwasser — wir installieren, reparieren und warten alle wasserführenden Leitungen in Ihrem Objekt.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">♨️</div>
+      <div class="svc-title">Heizungsanlagen</div>
+      <p class="svc-desc">Neue Heizung, Modernisierung oder Wärmepumpe — wir beraten Sie zur besten Lösung und installieren fachgerecht inkl. Förderantrag.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🚿</div>
+      <div class="svc-title">Sanitär & Bäder</div>
+      <p class="svc-desc">Badezimmerneuinstallationen, Sanierungen und Einzelreparaturen. Auch tropfende Wasserhähne und defekte Armaturen beheben wir schnell.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🔧</div>
+      <div class="svc-title">Wartung & Kundendienst</div>
+      <p class="svc-desc">Regelmäßige Wartung verlängert die Lebensdauer Ihrer Anlage und spart Energie. Wir kommen zu Ihnen — pünktlich und zuverlässig.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🚨</div>
+      <div class="svc-title">Notdienst</div>
+      <p class="svc-desc">Rohrbruch, Gasgeruch, Heizungsausfall? Unser Notdienst ist für Sie da, wenn andere schlafen. Direkt aus Schwäbisch Gmünd.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ÜBER UNS -->
+<section class="about" id="ueber-uns">
+  <div class="about-content">
+    <div class="section-label">Über uns</div>
+    <h2>Ihr <em>Fachbetrieb</em><br>in Gmünd</h2>
+    <div class="about-text">
+      <p>Die Benno Staffen GmbH ist ein etablierter Innungsbetrieb für Gas-, Wasser- und Heizungsinstallationen in Schwäbisch Gmünd. Wir stehen für handwerkliche Qualität, transparente Preise und zuverlässigen Service.</p>
+      <p>Als Mitglied der SHK-Innung erfüllen wir höchste Qualitätsstandards und bleiben immer auf dem neuesten Stand der Technik — von Wärmepumpen bis zu Smart-Home-Heizsteuerungen.</p>
+    </div>
+  </div>
+  <div class="about-visual">
+    <div class="av-row">
+      <div class="av-icon">🏆</div>
+      <div>
+        <div class="av-title">SHK-Innungsbetrieb</div>
+        <div class="av-desc">Zertifiziert und geprüft — Ihr Garant für Qualität und Fachkompetenz nach DIN-Normen.</div>
+      </div>
+    </div>
+    <div class="av-row">
+      <div class="av-icon">⚡</div>
+      <div>
+        <div class="av-title">Schnelle Reaktionszeiten</div>
+        <div class="av-desc">Kurze Wege, direkt aus Gmünd — wir sind meist noch am selben oder nächsten Tag bei Ihnen.</div>
+      </div>
+    </div>
+    <div class="av-row">
+      <div class="av-icon">💡</div>
+      <div>
+        <div class="av-title">Energieberatung inklusive</div>
+        <div class="av-desc">Wir zeigen Ihnen, wie Sie durch moderne Heizungstechnik Energie und Kosten sparen können.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="contact" id="kontakt">
+  <div class="contact-inner">
+    <div class="section-label" style="justify-content:center">Kontakt</div>
+    <h2>Einfach <em>anfragen</em></h2>
+    <p class="contact-sub">Wir melden uns innerhalb von 24 Stunden. Für Notfälle sind wir auch telefonisch direkt erreichbar.</p>
+    <div class="contact-grid">
+      <div class="cinfo">
+        <div class="cinfo-label">Telefon</div>
+        <div class="cinfo-val">07171-66625</div>
+      </div>
+      <div class="cinfo">
+        <div class="cinfo-label">E-Mail</div>
+        <div class="cinfo-val">info@staffen-gmbh.de</div>
+      </div>
+      <div class="cinfo">
+        <div class="cinfo-label">Adresse</div>
+        <div class="cinfo-val">Werrenwiesenstraße 42<br>73525 Schwäbisch Gmünd</div>
+      </div>
+      <div class="cinfo">
+        <div class="cinfo-label">Öffnungszeiten</div>
+        <div class="cinfo-val">Mo–Fr 7:00–17:00 Uhr</div>
+      </div>
+    </div>
+    <form action="https://formsubmit.co/info@staffen-gmbh.de" method="POST">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Ihr Name" required>
+        <input type="tel" name="telefon" placeholder="Telefonnummer">
+      </div>
+      <input type="email" name="email" placeholder="Ihre E-Mail-Adresse" required>
+      <input type="text" name="betreff" placeholder="Betreff (z.B. Heizungswartung, Rohrbruch…)">
+      <textarea name="nachricht" placeholder="Ihre Nachricht…"></textarea>
+      <p class="modal-note">Demo-Ansicht — Formular, Öffnungszeiten und Fotos werden vor dem Livegang gemeinsam ergänzt.</p>
+      <button type="submit" class="form-btn">Nachricht senden →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-copy">© 2026 Benno Staffen GmbH · Schwäbisch Gmünd</div>
+  <div class="foot-links">
+    <a href="#impressum">Impressum</a>
+    <a href="#datenschutz">Datenschutz</a>
+  </div>
+</footer>
+
+<!-- IMPRESSUM -->
+<section class="legal" id="impressum">
+  <h3>Impressum</h3>
+  <address>
+    <strong>Benno Staffen GmbH</strong><br>
+    Werrenwiesenstraße 42<br>
+    73525 Schwäbisch Gmünd<br><br>
+    Telefon: 07171-66625<br>
+    Fax: 07171-67036<br>
+    E-Mail: info@staffen-gmbh.de<br><br>
+    Geschäftsführer: [Name wird vor Livegang ergänzt]<br>
+    Handelsregister: Amtsgericht Ulm, HRB [Nummer]<br>
+    USt-IdNr.: DE [Nummer]<br><br>
+    Berufsbezeichnung: Gas- und Wasserinstallateur, verliehen in der Bundesrepublik Deutschland<br>
+    Zuständige Handwerkskammer: Handwerkskammer Ulm
+  </address>
+  <h3>Streitschlichtung</h3>
+  <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr — Wir sind nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen (§ 36 VSBG).</p>
+</section>
+
+<!-- DATENSCHUTZ -->
+<section class="legal" id="datenschutz">
+  <h3>Datenschutzerklärung</h3>
+  <h3>1. Verantwortliche Stelle</h3>
+  <address>Benno Staffen GmbH, Werrenwiesenstraße 42, 73525 Schwäbisch Gmünd, Tel: 07171-66625, E-Mail: info@staffen-gmbh.de</address>
+  <h3>2. Allgemeines</h3>
+  <p>Keine Tracking-Cookies, keine Analyse- oder Werbedienste. Verarbeitung nur nach DSGVO + BDSG.</p>
+  <h3>3. Hosting (Netlify)</h3>
+  <p>Netlify, Inc., 512 2nd Street, San Francisco, CA 94107, USA. Verbindungsdaten (IP, Browsertyp, Zeitstempel, URL) in Serverlogfiles. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO. Netlify ist nach dem EU-US Data Privacy Framework zertifiziert. Speicherdauer: max. 30 Tage.</p>
+  <h3>4. Kontaktformular</h3>
+  <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. lit. f DSGVO. Formulardaten über FormSubmit.co als Auftragsverarbeiter (Art. 28 DSGVO). Keine Weitergabe an Dritte. Speicherdauer: bis Abschluss der Anfrage.</p>
+  <h3>5. Betroffenenrechte</h3>
+  <p>Art. 15 (Auskunft), Art. 16 (Berichtigung), Art. 17 (Löschung), Art. 18 (Einschränkung), Art. 20 (Übertragbarkeit), Art. 21 (Widerspruch)</p>
+  <h3>6. Beschwerderecht</h3>
+  <p>Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg, Postfach 10 29 32, 70025 Stuttgart, www.baden-wuerttemberg.datenschutz.de</p>
+</section>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+</script>
+</body>
+</html>
